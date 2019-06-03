@@ -27,13 +27,13 @@ buildup)
     kubectl create -f codis-service.yaml
     kubectl create -f codis-dashboard.yaml
     while [ $(kubectl get pods -l app=codis-dashboard |grep Running |wc -l) != 1 ]; do sleep 1; done;
-    kubectl create -f codis-proxy.yaml
+    kubectl create -f codis-proxy-dp.yaml
     kubectl create -f codis-server.yaml
     servers=$(grep "replicas" codis-server.yaml |awk  '{print $2}')
     while [ $(kubectl get pods -l app=codis-server |grep Running |wc -l) != $servers ]; do sleep 1; done;
     kubectl exec -it codis-server-0 -- codis-admin  --dashboard=codis-dashboard:18080 --rebalance --confirm
     kubectl create -f codis-ha.yaml
-    kubectl create -f codis-fe.yaml
+    kubectl create -f codis-fe-dp.yaml
     sleep 60
     kubectl exec -it codis-dashboard-0 -- redis-cli -h codis-proxy -p 19000 PING
     if [ $? != 0 ]; then
