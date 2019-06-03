@@ -2,6 +2,7 @@ apiVersion: "apps/v1beta1"
 kind: StatefulSet
 metadata:
   name: codis-server
+  namespace: jcptb
 spec:
   serviceName: codis-server
   replicas: 4

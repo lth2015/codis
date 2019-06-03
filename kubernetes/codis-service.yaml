@@ -4,6 +4,7 @@ metadata:
   labels:
     app: codis-dashboard
   name: codis-dashboard
+  namespace: jcptb
 spec:
   clusterIP: None
   ports:
@@ -17,6 +18,7 @@ metadata:
   labels:
     app: codis-fe
   name: codis-fe
+  namespace: jcptb
 spec:
   type: NodePort
   ports:
@@ -31,6 +33,7 @@ metadata:
   labels:
     app: codis-proxy
   name: codis-proxy
+  namespace: jcptb
 spec:
   ports:
     - port: 11080
@@ -46,6 +49,7 @@ metadata:
   labels:
     app: codis-server
   name: codis-server
+  namespace: jcptb
 spec:
   clusterIP: None
   ports:
@@ -59,6 +63,7 @@ metadata:
   labels:
     app: codis-ha
   name: codis-ha
+  namespace: jcptb
 spec:
   clusterIP: None
   ports:
